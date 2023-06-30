@@ -12,7 +12,7 @@ app.use(express.json())
 
 app.use("/api", apiRouter)
 
-//Catches 404 not found errors
+//Catches 404 not found errors 
 app.use((req,res)=>{
     res.sendStatus(404)
 })
