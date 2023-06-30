@@ -1,1 +1,1 @@
-console.log("First deploy :)")
+console.log("Testing git environment ")
