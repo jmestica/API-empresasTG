@@ -6,7 +6,7 @@ const app = express()
 const apiRouter = require("./routes/router")
 
 const PORT = process.env.PORT || 3500
-const IP_ADDRESS = "192.168.1.57"
+const IP_ADDRESS = process.env.IP_ADDRESS;
 
 app.use(express.json())
 
