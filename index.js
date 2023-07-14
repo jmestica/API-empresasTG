@@ -1,9 +1,14 @@
 require("dotenv").config()
 
+require("./database/database")
+
 //Express config y routers
 const express = require("express")
 const app = express()
 const apiRouter = require("./routes/router")
+
+const cors = require('cors');
+app.use(cors());
 
 const PORT = process.env.PORT || 3500
 const IP_ADDRESS = process.env.IP_ADDRESS;
