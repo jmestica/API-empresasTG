@@ -7,13 +7,16 @@ const contactosRouter = require("./contactosRouter")
 const antecedentesRouter = require("./antecedentesRouter")
 const ciudadesRouter = require( "./ciudadesRouter")
 const parquesRouter = require("./parquesRouter")
+const sectoresRouter = require("./sectoresRouter")
+const herramientasRouter = require( "./herramientasRouter")
 
-
-router.use("/empresas", empresasRouter)
-router.use("/contactos", contactosRouter)
-router.use("/antecedentes", antecedentesRouter)
-router.use("/ciudades", ciudadesRouter)
+router.use('/empresas', empresasRouter)
+router.use('/contactos', contactosRouter)
+router.use('/antecedentes', antecedentesRouter)
+router.use('/ciudades', ciudadesRouter)
 router.use('/parques', parquesRouter)
+router.use('/sectores', sectoresRouter)
+router.use('/herramientas', herramientasRouter)
 
 
 module.exports = router
