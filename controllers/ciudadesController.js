@@ -19,9 +19,20 @@ const obtenerCiudadesProvincia = async (req, res) => {
 
 }
 
+const obtenerCiudadesSearch = async (req, res) => {
+
+    const id = req.params.id
+
+    const ciudades_search = await ciudadesServices.obtenerCiudadesSearch(id)
+
+    res.json(ciudades_search)
+
+}
+
 
 
 module.exports = {
     obtenerCiudades,
-    obtenerCiudadesProvincia
+    obtenerCiudadesProvincia,
+    obtenerCiudadesSearch
 }
