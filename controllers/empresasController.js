@@ -1,4 +1,5 @@
 const empresasServices = require('../services/empresasServices')
+const claeServices = require('../services/claeServices')
 
 const obtenerEmpresas = (req, res) => {
     res.send("Empresas")
@@ -33,9 +34,27 @@ const crearEmpresa = (req, res) => {
 
     let tamaño_sepyme = req.body['tamaño_sepyme']
 
-
-    empresasServices.crearEmpresa(cuit_completo, razon_social, tamaño_sepyme ,domicilio, descripcion, link_web, link_crm, provincia, ciudad, parque_industrial)
+    //Se crea empresa
+    const nueva_empresa = empresasServices.crearEmpresa(cuit_completo, razon_social, tamaño_sepyme ,domicilio, descripcion, link_web, link_crm, provincia, ciudad, parque_industrial)
   
+    if (nueva_empresa) {
+
+        const {claes} = req.body
+
+        //Se asignan los claes correspondientes
+        claes.forEach(claeEmpresa => {
+            claeServices.asignarClae(claeEmpresa, cuit_completo)
+        });
+
+        //Crear antecedentes
+
+        //Vincular asesores
+
+        //Vincular herramientas
+
+
+    }
+
     res.send("Empresa: " + cuit_completo)
 }
 
