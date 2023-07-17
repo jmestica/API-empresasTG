@@ -13,7 +13,7 @@ router.get("/:nombre_empresa", empresasController.obtenerEmpresa)
 router.get("/full/:nombre_empresa", empresasController.obtenerEmpresaJoin)
 
 //Crear empresa
-router.post("/:nombre_empresa", empresasController.crearEmpresa)
+router.post("/", empresasController.crearEmpresa)
 
 //Actualizar empresa
 router.patch("/:nombre_empresa", empresasController.modificarEmpresa)

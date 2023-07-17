@@ -1,3 +1,5 @@
+const empresasServices = require('../services/empresasServices')
+
 const obtenerEmpresas = (req, res) => {
     res.send("Empresas")
 }
@@ -24,7 +26,17 @@ const obtenerEmpresa = (req, res) => {
 }
 
 const crearEmpresa = (req, res) => {
-    res.send("Empresa: " + req.params.nombre_empresa + " creada")
+  
+    const {cuit1, cuit2, cuit3, razon_social, domicilio, descripcion, link_web, link_crm, provincia, ciudad, parque_industrial} = req.body
+
+    let cuit_completo = cuit1+cuit2+cuit3;
+
+    let tamaño_sepyme = req.body['tamaño_sepyme']
+
+
+    empresasServices.crearEmpresa(cuit_completo, razon_social, tamaño_sepyme ,domicilio, descripcion, link_web, link_crm, provincia, ciudad, parque_industrial)
+  
+    res.send("Empresa: " + cuit_completo)
 }
 
 const modificarEmpresa = (req, res) => {
