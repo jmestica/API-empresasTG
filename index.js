@@ -8,7 +8,7 @@ const app = express()
 const apiRouter = require("./routes/router")
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({credentials: true}));
 
 const PORT = process.env.PORT || 3500
 const IP_ADDRESS = process.env.IP_ADDRESS;
