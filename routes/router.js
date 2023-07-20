@@ -1,5 +1,5 @@
 const express = require("express")
-const router = express.Router()
+const  router = express.Router()
 
 //Subrutas
 const empresasRouter = require("./empresasRouter")
@@ -10,6 +10,7 @@ const parquesRouter = require("./parquesRouter")
 const sectoresRouter = require("./sectoresRouter")
 const herramientasRouter = require( "./herramientasRouter")
 const claeRouter = require( "./claeRouter")
+const asesoresRouter = require( "./asesoresRouter")
 
 
 router.use('/empresas', empresasRouter)
@@ -20,6 +21,7 @@ router.use('/parques', parquesRouter)
 router.use('/sectores', sectoresRouter)
 router.use('/herramientas', herramientasRouter)
 router.use('/clae', claeRouter)
+router.use('/asesores',asesoresRouter)
 
 
 module.exports = router

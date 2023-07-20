@@ -7,16 +7,19 @@ const empresasController = require("../controllers/empresasController")
 router.get("/", empresasController.obtenerEmpresas)
 
 //Obtener empresa por nombre
-router.get("/:nombre_empresa", empresasController.obtenerEmpresa)
+router.get("/:cuit_empresa", empresasController.obtenerEmpresa)
 
 //Obtener todos los datos de las empresas+contactos+antecedentes por nombre
-router.get("/full/:nombre_empresa", empresasController.obtenerEmpresaJoin)
+router.get("/full/:cuit_empresa", empresasController.obtenerEmpresaJoin)
+
+//Obtener sectores que la empresa abastece
+router.get("/cadena/:cuit_empresa", empresasController.obtenerCadenaDeValor)
 
 //Crear empresa
 router.post("/", empresasController.crearEmpresa)
 
 //Actualizar empresa
-router.patch("/:nombre_empresa", empresasController.modificarEmpresa)
+router.patch("/:cuit_empresa", empresasController.modificarEmpresa)
 
 
 module.exports = router

@@ -22,6 +22,6 @@ app.use((req,res)=>{
     res.sendStatus(404)
 })
 
-app.listen(PORT, IP_ADDRESS, ()=>{
+app.listen(PORT, '192.168.0.30', ()=>{
     console.log("LISTENING ON PORT: ", PORT)
 })

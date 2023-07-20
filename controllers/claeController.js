@@ -17,8 +17,18 @@ const obtenerDescripcionClae =  async (req, res) => {
     res.json(clae);
 }
 
+const obtenerClaesEmpresa = async (req, res) => {
+
+    const cuit_empresa = req.params.cuit_empresa
+
+    const claes = await claeServices.obtenerClaesEmpresa(cuit_empresa)
+
+    res.json(claes)
+
+}
 
 module.exports = {
     obtenerClaes,
-    obtenerDescripcionClae
+    obtenerDescripcionClae,
+    obtenerClaesEmpresa
 }

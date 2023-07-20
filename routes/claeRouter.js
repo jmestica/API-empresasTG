@@ -7,4 +7,6 @@ router.get("/", claeController.obtenerClaes)
 
 router.get("/:codigo_clae", claeController.obtenerDescripcionClae)
 
+router.get('/clae_empresa/:cuit_empresa', claeController.obtenerClaesEmpresa)
+
 module.exports = router
