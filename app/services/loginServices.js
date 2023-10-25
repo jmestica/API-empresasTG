@@ -4,7 +4,7 @@ const obtenerUsuario = async (username) => {
 
     let value
 
-    const userData = await db.query("SELECT * FROM usuario WHERE mail = $1", [username])
+    const userData = await db.query("SELECT * FROM usuario WHERE email = $1", [username])
 
     userData.rows.length > 0 ? value = { hashedPassword: userData.rows[0].password, user: userData.rows[0].nombre } : value = null
 

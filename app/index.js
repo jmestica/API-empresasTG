@@ -4,11 +4,10 @@ const cors = require("cors");
 require('./database');
 
 
-
 //IMPORT Routers
-const PiezasRouter = require('./routes/PiezasRouter')
-const VendedorRouter = require('./routes/VendedorRouter')
+const ReactivosRouter = require('./routes/ReactivosRouter')
 const LoginRouter = require('./routes/LoginRouter')
+
 
 
 const app = express();
@@ -22,8 +21,7 @@ app.use(express.json());
 app.use(cors());
 
 //Routing requests
-app.use('/api/pieza', PiezasRouter)
-app.use('/api/vendedor', VendedorRouter)
+app.use('/api/reactivo', ReactivosRouter)
 app.use('/api/login', LoginRouter)
 
 //Catches 404 not found errors
@@ -32,6 +30,6 @@ app.use((req, res) => {
 })
 
 
-app.listen(PORT, '192.168.0.130', () => {
+app.listen(PORT, process.env.IP, () => {
   console.log("listening on port", PORT);
 });

@@ -1,5 +1,5 @@
 const qrcode = require('qrcode');
-const piezasServices = require('../services/piezasServices');
+const piezasServices = require('../services/reactivosServices');
 
 // Este endpoint, es para obtener la información referente a una pieza,
 // su historial e información de compra.
