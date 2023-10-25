@@ -33,11 +33,11 @@ const getQR = (req, res) => {
 }
 
 //Este endpoint es para dar de alta una nueva pieza en la base de datos.
-const crearPieza = async (req, res) => {
+const crearReactivo = async (req, res) => {
 
-    const nuevaPieza = req.body
+    const nuevoReactivo = req.body
 
-    const response = await piezasServices.crearPieza(nuevaPieza)
+    const response = await piezasServices.crearPieza(nuevoReactivo)
 
     res.send(response)
 }
