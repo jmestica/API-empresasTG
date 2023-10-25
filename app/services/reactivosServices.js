@@ -8,7 +8,7 @@ const getPieza = async (id) => {
 }
 
 
-const crearPieza = async (nuevaPieza) => {
+const crearReactivo = async (nuevaPieza) => {
 
     const values = [nuevaPieza.ID_Pieza, nuevaPieza.nombre, nuevaPieza.descripcion, nuevaPieza.cantidad, nuevaPieza.unidad]
 
@@ -20,6 +20,17 @@ const crearPieza = async (nuevaPieza) => {
     return true
 
 }
+
+//Consulta para obtener el ID de la última inserción de reactivo
+const getContador = async () => {
+
+    const res = await db.query('SELECT MAX(contador) AS ultima_insercion FROM reactivo')
+
+    const contador = res.rows[0].ultima_insercion
+
+    return contador === null?  0 : contador;
+}
+
 
 const agregarMovimiento = async (nuevoMovimiento) => {
 
@@ -60,7 +71,8 @@ const getAllInfo = async (ID_Pieza) => {
 
 module.exports = {
     getPieza,
-    crearPieza,
+    crearReactivo,
+    getContador,
     agregarMovimiento,
     getHistorial,
     getDatosCompra,
