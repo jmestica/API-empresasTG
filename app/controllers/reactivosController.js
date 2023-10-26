@@ -1,5 +1,5 @@
 const qrcode = require('qrcode');
-const piezasServices = require('../services/reactivosServices');
+const reactivosServices = require('../services/reactivosServices');
 
 // Este endpoint, es para obtener la información referente a una pieza,
 // su historial e información de compra.
@@ -7,7 +7,7 @@ const getPieza = async (req, res) => {
 
     const ID_Pieza = req.params.id;
 
-    const response = await piezasServices.getPieza(ID_Pieza);
+    const response = await reactivosServices.getPieza(ID_Pieza);
 
     response.fecha = response.fecha.toLocaleDateString()
 
@@ -37,8 +37,8 @@ const crearReactivo = async (req, res) => {
 
     const nuevoReactivo = req.body
 
-    const response = await piezasServices.crearPieza(nuevoReactivo)
-
+    const response = await reactivosServices.crearPieza(nuevoReactivo)
+  
     res.send(response)
 }
 
@@ -56,7 +56,7 @@ const getHistorial = async (req, res) => {
 
     const ID_Pieza = req.params.id
 
-    const response = await piezasServices.getHistorial(ID_Pieza)
+    const response = await reactivosServices.getHistorial(ID_Pieza)
 
     response.map((item) => {
         item.hora = item.hora.slice(0, 5),
@@ -74,7 +74,7 @@ const agregarMovimiento = async (req, res) => {
 
     const nuevoMovimiento = req.body
 
-    const response = await piezasServices.agregarMovimiento(nuevoMovimiento)
+    const response = await reactivosServices.agregarMovimiento(nuevoMovimiento)
 
     response === 1 ? res.send({ success: true }) : res.send({ success: false })
 
@@ -86,7 +86,7 @@ const getDatosCompra = async (req, res) => {
 
     const ID_Pieza = req.params.id
 
-    const response = await piezasServices.getDatosCompra(ID_Pieza)
+    const response = await reactivosServices.getDatosCompra(ID_Pieza)
 
     response.map((item) => {
         item.fecha = item.fecha.toLocaleDateString()
@@ -100,7 +100,7 @@ const getAllInfo = async (req, res) => {
 
     const ID_Pieza = req.params.id
 
-    const response = await piezasServices.getAllInfo(ID_Pieza)
+    const response = await reactivosServices.getAllInfo(ID_Pieza)
 
     response.map((item) => {
         item.hora = item.hora.slice(0, 5),
@@ -109,6 +109,21 @@ const getAllInfo = async (req, res) => {
 
 
     res.send(response)
+
+}
+
+const getAll = async (req, res) => {
+
+    try {
+        console.log(req);
+        const response = await reactivosServices.getAll()
+        console.log(response);
+
+        res.send(response)
+    } catch (error) {
+        console.error(error)
+        res.send(error)
+    }
 
 }
 
@@ -121,5 +136,6 @@ module.exports = {
     getHistorial,
     agregarMovimiento,
     getDatosCompra,
-    getAllInfo
+    getAllInfo,
+    getAll
 } 
