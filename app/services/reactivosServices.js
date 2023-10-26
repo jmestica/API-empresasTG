@@ -1,10 +1,19 @@
 const db = require('../database');
 
-const getPieza = async (id) => {
+const getReactivo = async (id) => {
 
-    const { rows } = await db.query('SELECT * FROM pieza INNER JOIN es_comprada ON pieza.id_pieza = es_comprada.id_pieza WHERE pieza.id_pieza = $1', [id]);
+    const { rows } = await db.query(`
+  SELECT
+    nombre_reactivo,
+    cantidad,
+    marca,
+    fecha_ingreso,
+    fecha_vto
+  FROM reactivo
+  WHERE codigo = $1
+`, [id]);
 
-    return rows[0]
+    return rows;
 }
 
 
@@ -12,10 +21,10 @@ const crearReactivo = async (nuevaPieza) => {
 
     const values = [nuevaPieza.ID_Pieza, nuevaPieza.nombre, nuevaPieza.descripcion, nuevaPieza.cantidad, nuevaPieza.unidad]
 
-    const {rows} = await db.query('INSERT INTO pieza VALUES ($1, $2, $3, $4, $5)', values)
+    const { rows } = await db.query('INSERT INTO pieza VALUES ($1, $2, $3, $4, $5)', values)
 
-    const es_comprada_values = [nuevaPieza.ID_Pieza, nuevaPieza.es_comprada.nombre_vendedor, nuevaPieza.es_comprada.fecha, nuevaPieza.es_comprada.monto_compra ]
-    const {es_comprada} = await db.query('INSERT INTO es_comprada VALUES ($1, $2, $3, $4)', es_comprada_values)
+    const es_comprada_values = [nuevaPieza.ID_Pieza, nuevaPieza.es_comprada.nombre_vendedor, nuevaPieza.es_comprada.fecha, nuevaPieza.es_comprada.monto_compra]
+    const { es_comprada } = await db.query('INSERT INTO es_comprada VALUES ($1, $2, $3, $4)', es_comprada_values)
 
     return true
 
@@ -28,7 +37,7 @@ const getContador = async () => {
 
     const contador = res.rows[0].ultima_insercion
 
-    return contador === null?  0 : contador;
+    return contador === null ? 0 : contador;
 }
 
 
@@ -43,9 +52,9 @@ const agregarMovimiento = async (nuevoMovimiento) => {
 }
 
 
-const getHistorial = async (ID_Pieza) => {
+const getHistorial = async (ID_Reactivo) => {
 
-    const {rows} = await db.query('SELECT * FROM movimiento WHERE id_pieza = $1', [ID_Pieza])
+    const { rows } = await db.query('SELECT * FROM consumo WHERE codigo = $1 ORDER BY registro_consumo DESC', [ID_Reactivo])
 
     return rows
 
@@ -54,7 +63,7 @@ const getHistorial = async (ID_Pieza) => {
 
 const getDatosCompra = async (ID_Pieza) => {
 
-    const {rows} = await db.query('SELECT * FROM es_comprada WHERE id_pieza = $1', [ID_Pieza])
+    const { rows } = await db.query('SELECT * FROM es_comprada WHERE id_pieza = $1', [ID_Pieza])
 
     return rows
 
@@ -62,7 +71,7 @@ const getDatosCompra = async (ID_Pieza) => {
 
 const getAllInfo = async (ID_Pieza) => {
 
-    const {rows} = await db.query('SELECT movimiento.*, pieza.*, es_comprada.* FROM movimiento  INNER JOIN pieza ON movimiento.id_pieza = pieza.id_pieza  INNER JOIN es_comprada ON pieza.id_pieza = es_comprada.id_pieza WHERE movimiento.id_pieza = $1',[ID_Pieza])
+    const { rows } = await db.query('SELECT movimiento.*, pieza.*, es_comprada.* FROM movimiento  INNER JOIN pieza ON movimiento.id_pieza = pieza.id_pieza  INNER JOIN es_comprada ON pieza.id_pieza = es_comprada.id_pieza WHERE movimiento.id_pieza = $1', [ID_Pieza])
 
     return rows
 
@@ -70,7 +79,7 @@ const getAllInfo = async (ID_Pieza) => {
 
 const getAll = async () => {
 
-    const {rows} = await db.query('SELECT * FROM reactivo');
+    const { rows } = await db.query('SELECT * FROM reactivo');
 
     return rows;
 
@@ -78,7 +87,7 @@ const getAll = async () => {
 
 
 module.exports = {
-    getPieza,
+    getReactivo,
     crearReactivo,
     getContador,
     agregarMovimiento,

@@ -3,13 +3,11 @@ const reactivosServices = require('../services/reactivosServices');
 
 // Este endpoint, es para obtener la información referente a una pieza,
 // su historial e información de compra.
-const getPieza = async (req, res) => {
+const getReactivo = async (req, res) => {
 
-    const ID_Pieza = req.params.id;
+    const ID_Reactivo = req.params.id;
 
-    const response = await reactivosServices.getPieza(ID_Pieza);
-
-    response.fecha = response.fecha.toLocaleDateString()
+    const response = await reactivosServices.getReactivo(ID_Reactivo);
 
     res.send(response);
 }
@@ -54,18 +52,9 @@ const getContador = async (req, res) => {
 //Este endpoint es para obtener todos los movimientos de una determinada fecha.
 const getHistorial = async (req, res) => {
 
-    const ID_Pieza = req.params.id
-
-    const response = await reactivosServices.getHistorial(ID_Pieza)
-
-    response.map((item) => {
-        item.hora = item.hora.slice(0, 5),
-            item.fecha = item.fecha.toLocaleDateString()
-    })
-
+    const ID_Reactivo = req.params.id
+    const response = await reactivosServices.getHistorial(ID_Reactivo)
     res.send(response)
-
-
 }
 
 
@@ -115,10 +104,7 @@ const getAllInfo = async (req, res) => {
 const getAll = async (req, res) => {
 
     try {
-        console.log(req);
         const response = await reactivosServices.getAll()
-        console.log(response);
-
         res.send(response)
     } catch (error) {
         console.error(error)
@@ -129,7 +115,7 @@ const getAll = async (req, res) => {
 
 
 module.exports = {
-    getPieza,
+    getReactivo,
     getQR,
     crearReactivo,
     getContador,

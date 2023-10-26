@@ -14,7 +14,7 @@ router.get('/contador', reactivosController.getContador)
 
 router.get('/info/:id', reactivosController.getAllInfo)       
 router.get('/getAll', reactivosController.getAll )
-router.get('/:id', reactivosController.getPieza)
+router.get('/:id', reactivosController.getReactivo)
 
 //Alta de reactivos: Crear un nuevo reactivo en la base de datos
 router.post('/', reactivosController.crearReactivo)
