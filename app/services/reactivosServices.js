@@ -57,6 +57,14 @@ const getAllInfo = async (ID_Pieza) => {
 
 }
 
+const getAll = async () => {
+
+    const {rows} = await db.query('SELECT * FROM reactivo');
+
+    return rows;
+
+}
+
 
 module.exports = {
     getPieza,
@@ -64,5 +72,6 @@ module.exports = {
     agregarMovimiento,
     getHistorial,
     getDatosCompra,
-    getAllInfo
+    getAllInfo,
+    getAll
 }

@@ -9,9 +9,9 @@ router.get('/historial/:id', reactivosController.getHistorial)
 router.post('/movimiento/:id', reactivosController.agregarMovimiento)
 router.get('/compra/:id', reactivosController.getDatosCompra)
 router.get('/info/:id', reactivosController.getAllInfo)       
+router.get('/getAll', reactivosController.getAll )
 router.get('/:id', reactivosController.getPieza)
 router.post('/', reactivosController.crearPieza)
-
 
 
 
