@@ -32,14 +32,23 @@ const getQR = (req, res) => {
 
 }
 
-//Este endpoint es para dar de alta una nueva pieza en la base de datos.
-const crearPieza = async (req, res) => {
+//Este endpoint es para dar de alta un nuevo reactivo en la base de datos.
+const crearReactivo = async (req, res) => {
 
-    const nuevaPieza = req.body
+    const nuevoReactivo = req.body
 
-    const response = await reactivosServices.crearPieza(nuevaPieza)
-
+    const response = await reactivosServices.crearPieza(nuevoReactivo)
+  
     res.send(response)
+}
+
+//Endpoint para obtener el ID de la ultima inserción en la base de datos para codificar nuevos reactivos
+const getContador = async (req, res) => {
+
+    const numero_contador = await piezasServices.getContador()
+
+    res.send({numero_contador: numero_contador})
+
 }
 
 //Este endpoint es para obtener todos los movimientos de una determinada fecha.
@@ -122,7 +131,8 @@ const getAll = async (req, res) => {
 module.exports = {
     getPieza,
     getQR,
-    crearPieza,
+    crearReactivo,
+    getContador,
     getHistorial,
     agregarMovimiento,
     getDatosCompra,
