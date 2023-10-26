@@ -45,7 +45,7 @@ const crearReactivo = async (req, res) => {
 //Endpoint para obtener el ID de la ultima inserción en la base de datos para codificar nuevos reactivos
 const getContador = async (req, res) => {
 
-    const numero_contador = await piezasServices.getContador()
+    const numero_contador = await reactivosServices.getContador()
 
     res.send({numero_contador: numero_contador})
 
