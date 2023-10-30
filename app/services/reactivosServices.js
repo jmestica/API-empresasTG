@@ -41,9 +41,9 @@ const getContador = async () => {
 }
 
 
-const agregarMovimiento = async (nuevoMovimiento) => {
+const agregarConsumo = async (nuevoMovimiento) => {
 
-    const values = [nuevoMovimiento.id_pieza, nuevoMovimiento.nombre_usuario, nuevoMovimiento.accion, nuevoMovimiento.fecha, nuevoMovimiento.hora, nuevoMovimiento.datos_adicionales]
+    const values = [nuevoMovimiento.codigo, nuevoMovimiento.nombre_usuario, nuevoMovimiento.cantidad, nuevoMovimiento.observaciones, nuevoMovimiento.registro_consumo, nuevoMovimiento.descripcion]
 
     const res = await db.query('INSERT INTO movimiento (id_pieza, nombre_usuario, accion, fecha, hora, datos_adicionales) VALUES ($1, $2, $3, $4, $5, $6)', values)
 
@@ -90,7 +90,7 @@ module.exports = {
     getReactivo,
     crearReactivo,
     getContador,
-    agregarMovimiento,
+    agregarConsumo,
     getHistorial,
     getDatosCompra,
     getAllInfo,

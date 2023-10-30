@@ -59,14 +59,13 @@ const getHistorial = async (req, res) => {
 
 
 //Este endpoint es para crear un nuevo movimiento en la pieza
-const agregarMovimiento = async (req, res) => {
+const agregarConsumo = async (req, res) => {
 
     const nuevoMovimiento = req.body
 
     const response = await reactivosServices.agregarMovimiento(nuevoMovimiento)
 
     response === 1 ? res.send({ success: true }) : res.send({ success: false })
-
 
 }
 
@@ -120,7 +119,7 @@ module.exports = {
     crearReactivo,
     getContador,
     getHistorial,
-    agregarMovimiento,
+    agregarConsumo,
     getDatosCompra,
     getAllInfo,
     getAll
