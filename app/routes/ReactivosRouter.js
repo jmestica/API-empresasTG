@@ -6,6 +6,7 @@ const reactivosController = require('../controllers/reactivosController')
 
 router.get('/getQR/:id', reactivosController.getQR)
 router.get('/historial/:id', reactivosController.getHistorial)
+router.get('/ultimo-consumo/:id', reactivosController.getUltimoConsumo)
 router.post('/consumo/:id', reactivosController.agregarConsumo)
 router.get('/compra/:id', reactivosController.getDatosCompra)
 
