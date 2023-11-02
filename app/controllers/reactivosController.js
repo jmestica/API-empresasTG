@@ -35,7 +35,7 @@ const crearReactivo = async (req, res) => {
 
     const nuevoReactivo = req.body
 
-    const response = await reactivosServices.crearPieza(nuevoReactivo)
+    const response = await reactivosServices.crearReactivo(nuevoReactivo)
   
     res.send(response)
 }
