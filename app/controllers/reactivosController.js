@@ -13,15 +13,18 @@ const getReactivo = async (req, res) => {
 }
 
 
-// Este endpoint, es para obtener el QR de una pieza, puede ser utilizado
-// cuando recién es creada la pieza, o bien cuando se quiere obtener nuevamente
-// el QR de la pieza, por pérdidas o daños.
+/* Este endpoint, es para obtener el QR de una pieza, puede ser utilizado
+ cuando recién es creada la pieza, o bien cuando se quiere obtener nuevamente
+ el QR de la pieza, por pérdidas o daños */
 
 const getQR = (req, res) => {
 
-    const ID_Pieza = req.params.id;
+    const codigo_reactivo = req.params.id
+    
+    const IP = process.env.IP
+    const FRONT_PORT = process.env.FRONT_PORT
 
-    const url = `http://192.168.0.130:5173/tracker/gestionarpieza/${ID_Pieza}`
+    const url = `http://${IP}:${FRONT_PORT}/tracker/gestionar-reactivo/${codigo_reactivo}`
 
     qrcode.toDataURL(url, (err, src) => {
         if (err) res.send("No se pudo crear el QR de la pieza");
@@ -37,7 +40,7 @@ const crearReactivo = async (req, res) => {
 
     const response = await reactivosServices.crearReactivo(nuevoReactivo)
   
-    res.send(response)
+    response ? res.sendStatus(200) : res.sendStatus(400) 
 }
 
 //Endpoint para obtener el ID de la ultima inserción en la base de datos para codificar nuevos reactivos

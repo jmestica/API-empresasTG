@@ -17,16 +17,13 @@ const getReactivo = async (id) => {
 }
 
 
-const crearReactivo = async (nuevaPieza) => {
+const crearReactivo = async (nuevoReactivo) => {
 
-    const values = [nuevaPieza.ID_Pieza, nuevaPieza.nombre, nuevaPieza.descripcion, nuevaPieza.cantidad, nuevaPieza.unidad]
+    const values = [nuevoReactivo.codigo, nuevoReactivo.observaciones, nuevoReactivo.nombre_reactivo, nuevoReactivo.cantidad, nuevoReactivo.fecha_vto, nuevoReactivo.nro_lote, nuevoReactivo.fecha_ingreso, nuevoReactivo.nro_expediente, nuevoReactivo.conservacion, nuevoReactivo.fecha_finalizacion, nuevoReactivo.marca, nuevoReactivo.fecha_descarte, nuevoReactivo.contador]
 
-    const { rows } = await db.query('INSERT INTO pieza VALUES ($1, $2, $3, $4, $5)', values)
+    const response = await db.query('INSERT INTO reactivo VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)', values)
 
-    const es_comprada_values = [nuevaPieza.ID_Pieza, nuevaPieza.es_comprada.nombre_vendedor, nuevaPieza.es_comprada.fecha, nuevaPieza.es_comprada.monto_compra]
-    const { es_comprada } = await db.query('INSERT INTO es_comprada VALUES ($1, $2, $3, $4)', es_comprada_values)
-
-    return true
+    return response.rowCount === 1? true: false
 
 }
 
