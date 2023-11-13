@@ -21,8 +21,8 @@ const getQR = (req, res) => {
 
     const codigo_reactivo = req.params.id
     
-    const IP = process.env.IP
-    const FRONT_PORT = process.env.FRONT_PORT
+    const IP = process.env.FRONT_IP || `192.168.0.34`
+    const FRONT_PORT = process.env.FRONT_PORT || `5173`
 
     const url = `http://${IP}:${FRONT_PORT}/tracker/gestionar-reactivo/${codigo_reactivo}`
 
